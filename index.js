@@ -20,7 +20,16 @@ addForm.addEventListener('submit', e=>
     e.preventDefault();
     const Innertt = addForm.text.value.trim();
     addinglist(Innertt);
+
+    localStorage.setItem('key',Innertt);
 });
+
+if(localStorage.getItem('key'))
+{
+  addinglist(localStorage.getItem('key'));
+}
+
+
 
 
 list.addEventListener('click', e=>
@@ -35,7 +44,7 @@ const filtertools = (trim) => {
 
   Array.from(list.children)
   .filter((todo) => !todo.textContent.toLowerCase().includes(trim))
-  .forEach((todo) => todo.classList.add('filtered')); 
+  .forEach((todo) => todo.classList.add('filtered')); 1
 
   Array.from(list.children)
   .filter((todo) => todo.textContent.toLowerCase().includes(trim))
@@ -46,5 +55,7 @@ search.addEventListener('keyup', ()=>
 {
   const trim = search.value.toLowerCase().trim();
   filtertools(trim);
+
 });
+
 
